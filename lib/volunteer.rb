@@ -16,11 +16,17 @@ class Volunteer
     results = DB.exec("SELECT * FROM volunteers;")
     volunteers = []
     results.each do |vol|
-      id = volume.fetch('id').to_i
-      name = volume.fetch('name')
-      project_id = volume.fetch('project_id').to_i
+      id = vol.fetch('id').to_i
+      name = vol.fetch('name')
+      project_id = vol.fetch('project_id').to_i
       volunteers.push(Volunteer.new({id: id, name: name, project_id: project_id}))
     end
     volunteers
   end
+
+  def save
+    result = DB.exec("INSERT INTO volunteers (name, project_id) VALUES ('#{@name}', #{@project_id}) RETURNING id;")
+    @id = result.first().fetch('id').to_i
+  end
+
 end
