@@ -50,7 +50,7 @@ patch('/projects/:id') do
   @project = Project.new(title: params[:title], id: nil) # params are important
   redirect to('/projects')
 end
-q
+
 delete('/projects/:id') do
   @project = Project.find(params[:id].to_i)
   @project.delete
