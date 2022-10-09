@@ -11,4 +11,15 @@ class Project
     self.title() == project_to_compare.title()
   end
 
+  def self.all
+    results = DB.exec("SELECT * FROM projects;")
+    projects = []
+    results.each do |project|
+      id = project.fetch('id').to_i
+      title = project.fetch('title')
+      projects.push(Project.new({id: id, title: title}))
+    end
+    projects
+  end
+
 end
