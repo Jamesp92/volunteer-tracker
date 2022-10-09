@@ -15,11 +15,11 @@ describe Project do
     end
  
 
-    # it 'returns the id of the project after saving project' do
-    #   project = Project.new({:title => 'Teaching Kids to Code', :id => nil})
-    #   project.save
-    #   expect(project.id).to be_an_instance_of Integer
-    # end
+    it 'returns the id of the project after saving project' do
+      project = Project.new({:title => 'Teaching Kids to Code', :id => nil})
+      project.save
+      expect(project.id).to be_an_instance_of Integer
+    end
   end
 
   describe '#==' do
@@ -45,13 +45,13 @@ describe Project do
   #   end
   # end
 
-  # describe '#save' do
-  #   it 'saves a project to the database' do
-  #     project = Project.new({:title => 'Teaching Kids to Code', :id => nil})
-  #     project.save
-  #     expect(Project.all).to eq [project]
-  #   end
-  # end
+  describe '#save' do
+    it 'saves a project to the database' do
+      project = Project.new({:title => 'Teaching Kids to Code', :id => nil})
+      project.save
+      expect(Project.all).to eq [project]
+    end
+  end
 
   # describe '.find' do
   #   it 'returns a project by id' do
