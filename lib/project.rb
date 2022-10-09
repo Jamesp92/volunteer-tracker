@@ -27,24 +27,22 @@ class Project
     @id = result.first().fetch('id').to_i
   end
 
-  def self.find(find_id)
-    result = DB.exec("SELECT * FROM projects WHERE id = #{find_id}").first
-    title = result.fetch('title')
-    id = result.fetch('id').to_i
-    Project.new({id: id, title: title})
-  end
-  
-  def update(update_hash)
-    if update_hash.has_key?(:title)
-      updated = DB.exec("UPDATE projects SET title = '#{title}' WHERE id = #{@id}")
-      @title = update_hash.fetch(:title)
+  def self.find(id)
+    project = DB.exec("SELECT * FROM projects WHERE id = #{id};").first
+    if project
+      title = project.fetch("title")
+      id = project.fetch("id").to_i
+      Project.new({ title: title, id:  id})
     else
       nil
     end
   end
 
-  def delete
-    DB.exec("DELETE FROM projects WHERE id = #{@id}")
+  def update(attributes)
+    if (attributes.has_key?(:title)) && (attributes.fetch(:title) != nil)
+      @title = attributes.fetch(:title)
+      DB.exec("UPDATE projects SET title = '#{@title}' WHERE id = #{@id}")
+    end
   end
 
   def volunteers
@@ -57,5 +55,13 @@ class Project
       volunteers.push(Volunteer.new({id: id, name: name, project_id: project_id}))
     end
     volunteers
+  end
+
+  def delete
+    DB.exec("DELETE FROM projects WHERE id = #{@id};")
+  end
+
+  def self.clear
+    DB.exec("DELETE FROM projects *;")
   end
 end
