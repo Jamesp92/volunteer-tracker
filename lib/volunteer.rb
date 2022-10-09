@@ -15,10 +15,10 @@ class Volunteer
   def self.all
     results = DB.exec("SELECT * FROM volunteers;")
     volunteers = []
-    results.each do |vol|
-      id = vol.fetch('id').to_i
-      name = vol.fetch('name')
-      project_id = vol.fetch('project_id').to_i
+    results.each do |volunteer|
+      id = volunteer.fetch('id').to_i
+      name = volunteer.fetch('name')
+      project_id = volunteer.fetch('project_id').to_i
       volunteers.push(Volunteer.new({id: id, name: name, project_id: project_id}))
     end
     volunteers
@@ -29,7 +29,7 @@ class Volunteer
     @id = result.first().fetch('id').to_i
   end
 
-  def self.find(find_id)
+    def self.find(find_id)
     result = DB.exec("SELECT * FROM volunteers WHERE id = #{find_id}").first
     id = result.fetch('id').to_i
     name = result.fetch('name')
