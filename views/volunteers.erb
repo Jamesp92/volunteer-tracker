@@ -1,0 +1,20 @@
+<h4>Volunteers</h4>
+  <% if @volunteers %>
+    <ul>
+      <% @volunteers.each do |volunteer| %>
+        <li><a <%= volunteer.id %>><%= volunteer.name %> </a></li>
+      <% end %>
+    </ul>
+  <% else %>
+      <p> There are no volunteers</p>
+  <% end %>
+
+<h4>Add a volunteer</h4>
+
+<form action="volunteers" method="post">
+  <div class="form-group"> 
+    <label for="name">Volunteer name</label>
+    <input id="name" name="name" class="form-control" type="text">
+  </div>
+    <button type="submit" class="btn btn-success">Add volunteer</button>
+</form>

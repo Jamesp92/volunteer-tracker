@@ -52,12 +52,16 @@ patch('/projects/:id') do
   redirect to('/projects')
 end
 
-
-
 delete('/projects/:id') do
   @project = Project.find(params[:id].to_i)
   @project.delete
   redirect to('/projects')
 end
+
+get('/volunteers') do
+  @volunteers = Volunteer.all
+  erb(:volunteers)
+end
+
 
 
