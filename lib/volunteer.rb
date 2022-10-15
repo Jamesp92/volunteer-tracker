@@ -36,5 +36,4 @@ class Volunteer
     project_id = result.fetch('project_id').to_i
     Volunteer.new({id: id, name: name, project_id: project_id})
   end
-
 end
