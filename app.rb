@@ -47,12 +47,17 @@ get('/projects/:id/edit') do
 end
 
 patch('/projects/:id') do
-  @project = Project.new(title: params[:title], id: nil) # params are important
+  @project = Project.find(params[:id])
+  @project.update({:title => params[:project]})
   redirect to('/projects')
 end
+
+
 
 delete('/projects/:id') do
   @project = Project.find(params[:id].to_i)
   @project.delete
   redirect to('/projects')
 end
+
+

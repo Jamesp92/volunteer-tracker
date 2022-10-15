@@ -93,31 +93,4 @@ describe Project do
       expect(Project.all).to eq []
     end
   end
-
- 
-  context '.all' do
-    
-  it 'returns all something' do
-  project1 = Project.new({:title => 'Teaching Kids to Code', :id => nil})
-  project1.save
-  project1.update( {:title => 'this is a new project', :id => nil})
-  expect(project1.title).to eq "this is a new project"
-  end
-end
-
-
-
-  # describe '#delete' do
-  #   it 'deletes all projects' do
-  #     project = Project.new({:title => 'Teaching Kids to Code', :id => nil})
-  #     project.save
-  #     project.clear
-  #     project1 = Project.new({:title => 'this is a new project', :id => nil})
-  #     project1.save
-  #     project1.clear
-  #     expect(Project.all).to eq []
-  #   end
-  # end
-
-  
 end
